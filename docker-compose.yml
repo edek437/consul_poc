@@ -1,0 +1,49 @@
+version: '3.4'
+
+x-consul-base: &consul-base
+  image: consul:latest
+  networks:
+    - consul-demo
+
+x-consul-client-cmd: &client-cmd
+  command: "agent -retry-join consul-server-3 -client 0.0.0.0"
+
+services:
+  consul-agent-1:
+    <<: *consul-base
+    <<: *client-cmd
+    hostname: consul-agent-1
+
+  consul-agent-2:
+    <<: *consul-base
+    <<: *client-cmd
+    hostname: consul-agent-2
+
+  consul-agent-3:
+    <<: *consul-base
+    <<: *client-cmd
+    hostname: consul-agent-3
+
+  consul-server-1:
+    <<: *consul-base
+    hostname: consul-server-1
+    domainname: consul-server-1.example.com
+    command: "agent -server -retry-join consul-server-3 -client 0.0.0.0"
+
+  consul-server-2:
+    <<: *consul-base
+    hostname: consul-server-2
+    command: "agent -server -retry-join consul-server-3 -client 0.0.0.0"
+
+  consul-server-3:
+    <<: *consul-base
+    hostname: consul-server-3
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:8600"
+      - "8600:8600/udp"
+    command: "agent -server -bootstrap-expect 3 -ui -client 0.0.0.0"
+
+networks:
+  consul-demo:
