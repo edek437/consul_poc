@@ -5,65 +5,80 @@ x-consul-base: &consul-base
   command: "agent -data-dir /consul/config"
 
 services:
-  consul-agent-1:
+  consul-dc1-agent-1:
     <<: *consul-base
-    hostname: consul-agent-1
+    hostname: consul-dc1-agent-1
     volumes:
       - ./consul_client/config/consul-agent-1/config.json:/consul/config/config.json
     networks:
-      consul-demo: {}
+      consul-dc1: {}
 
-  consul-agent-2:
+  consul-dc1-agent-2:
     <<: *consul-base
-    hostname: consul-agent-2
+    hostname: consul-dc1-agent-2
     volumes:
       - ./consul_client/config/consul-agent-2/config.json:/consul/config/config.json
     networks:
-      consul-demo: {}
+      consul-dc1: {}
 
-  consul-agent-3:
-    <<: *consul-base
-    hostname: consul-agent-3
-    volumes:
-      - ./consul_client/config/consul-agent-3/config.json:/consul/config/config.json
-    networks:
-      consul-demo: {}
+  # consul-dc2-agent-1:
+  #   <<: *consul-base
+  #   hostname: consul-dc2-agent-1
+  #   volumes:
+  #     - ./consul_client/config/consul-dc2-agent-1/config.json:/consul/config/config.json
+  #   networks:
+  #     consul-dc2: {}
 
-  consul-server-1:
+  # consul-dc3-agent-1:
+  #   <<: *consul-base
+  #   hostname: consul-dc3-agent-1
+  #   volumes:
+  #     - ./consul_client/config/consul-dc3-agent-1/config.json:/consul/config/config.json
+  #   networks:
+  #     consul-dc3: {}
+
+  consul-dc1-server-1:
     <<: *consul-base
-    hostname: consul-server-1
-    domainname: consul-server-1.example.com
+    hostname: consul-dc1-server-1
     volumes:
-      - ./consul_server/config/consul-server-1/config.json:/consul/config/config.json
+      - ./consul_server/config/consul-dc1-server-1/config.json:/consul/config/config.json
     networks:
-      consul-demo:
+      consul-dc1:
         ipv4_address: 172.16.0.11
 
-  consul-server-2:
+  consul-dc1-server-2:
     <<: *consul-base
-    hostname: consul-server-2
+    hostname: consul-dc1-server-2
     volumes:
-      - ./consul_server/config/consul-server-2/config.json:/consul/config/config.json
+      - ./consul_server/config/consul-dc1-server-2/config.json:/consul/config/config.json
     networks:
-      consul-demo:
+      consul-dc1:
         ipv4_address: 172.16.0.12
 
-  consul-server-3:
+  consul-dc1-server-3:
     <<: *consul-base
-    hostname: consul-server-3
+    hostname: consul-dc1-server-3
     ports:
-      - "8400:8400"
-      - "8500:8500"
-      - "8600:8600"
-      - "8600:8600/udp"
+      - "18400:8400"
+      - "18500:8500"
+      - "18600:8600"
+      - "18600:8600/udp"
     volumes:
-    - ./consul_server/config/consul-server-3/config.json:/consul/config/config.json
+    - ./consul_server/config/consul-dc1-server-3/config.json:/consul/config/config.json
     networks:
-      consul-demo:
+      consul-dc1:
         ipv4_address: 172.16.0.13
 
 networks:
-  consul-demo:
+  consul-dc1:
     ipam:
       config:
         - subnet: 172.16.0.0/24
+  consul-dc2:
+    ipam:
+      config:
+        - subnet: 172.16.1.0/24
+  consul-dc3:
+    ipam:
+      config:
+        - subnet: 172.16.2.0/24

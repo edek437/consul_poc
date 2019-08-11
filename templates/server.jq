@@ -1,6 +1,5 @@
 {
-  "bind_addr": "0.0.0.0", 
-  "datacenter": "dc1",
+  "datacenter": $datacenter,
   "data_dir": "/consul/data/",
   "log_level": "DEBUG",
   "enable_syslog": false,
@@ -12,9 +11,5 @@
   "leave_on_terminate": false,
   "skip_leave_on_interrupt": true,
   "rejoin_after_leave": true,
-  "retry_join": [ 
-    "172.16.0.11",
-    "172.16.0.12",
-    "172.16.0.13"
-  ]
+  "retry_join": $servers_to_join
 }
