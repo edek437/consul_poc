@@ -7,6 +7,10 @@ set -exu
   exit 1
 }
 
+declare cosul_poc_root=$PWD
+declare ca_file='templates/ca.pem'
+declare ca_key_file='templates/ca-key.pem'
+
 declare gossip_encryption_key='VhPBrehv0113moXGHevkEA=='
 declare primary_datacenter='dc1'
 declare retry_join_wan='[]'
@@ -51,6 +55,16 @@ for client in "${client_names[@]}"; do
      --argjson servers_to_join "${servers_to_join["$dc"]}" \
      -f templates/client.jq \
    > "consul_client/config/$client/config.json"
+  (
+    mkdir -p "consul_client/certs/$client"
+    jq -n -e --arg cn "$client" -f templates/client-crs.jq \
+     > "consul_client/certs/$client/client.json"
+    cd "consul_client/certs/$client"
+    cfssl gencert -ca="$cosul_poc_root/templates/ca.pem" \
+      -ca-key="$cosul_poc_root/templates/ca-key.pem" \
+      -config="$cosul_poc_root/templates/ca-config.json" \
+      -profile=client 'client.json' | cfssljson -bare "$client"
+  )
 done; unset client dc
 
 for server in "${server_names[@]}"; do
@@ -65,4 +79,16 @@ for server in "${server_names[@]}"; do
      --argjson servers_to_join "${servers_to_join["$dc"]}" \
      -f templates/server.jq \
    > "consul_server/config/$server/config.json"
+  (
+    mkdir -p "consul_server/certs/$server"
+    jq -n -e --arg cn "$server" \
+       --argjson hosts "[\"127.0.0.1\",\"localhost\", \"$server\", \"server.$dc.consul\"]" \
+       -f templates/server-crs.jq \
+     > "consul_server/certs/$server/server.json"
+    cd "consul_server/certs/$server"
+    cfssl gencert -ca="$cosul_poc_root/templates/ca.pem" \
+      -ca-key="$cosul_poc_root/templates/ca-key.pem" \
+      -config="$cosul_poc_root/templates/ca-config.json" \
+      -profile=server 'server.json' | cfssljson -bare "$server"
+  )
 done; unset server dc

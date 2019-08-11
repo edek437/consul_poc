@@ -1,4 +1,2 @@
-/consul_client/config/
-!/consul_client/config/README.md
-/consul_server/config/
-!/consul_server/config/README.md
+/consul_client/*
+/consul_server/*

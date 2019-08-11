@@ -10,6 +10,7 @@ services:
     hostname: consul-dc1-agent-1
     volumes:
       - ./consul_client/config/consul-dc1-agent-1/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc1-agent-1/tls.json:/consul/config/tls.json
     networks:
       consul-poc: {}
 
@@ -18,6 +19,7 @@ services:
     hostname: consul-dc1-agent-2
     volumes:
       - ./consul_client/config/consul-dc1-agent-2/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc1-agent-2/tls.json:/consul/config/tls.json
     networks:
       consul-poc: {}
 
@@ -26,6 +28,7 @@ services:
     hostname: consul-dc2-agent-1
     volumes:
       - ./consul_client/config/consul-dc2-agent-1/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc2-agent-1/tls.json:/consul/config/tls.json
     networks:
       consul-poc: {}
 
@@ -34,6 +37,7 @@ services:
     hostname: consul-dc3-agent-1
     volumes:
       - ./consul_client/config/consul-dc3-agent-1/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc3-agent-1/tls.json:/consul/config/tls.json
     networks:
       consul-poc: {}
 
@@ -42,6 +46,7 @@ services:
     hostname: consul-dc1-server-1
     volumes:
       - ./consul_server/config/consul-dc1-server-1/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc1-server-1/tls.json:/consul/config/tls.json
     networks:
       consul-poc:
         ipv4_address: 172.16.0.11
@@ -51,6 +56,7 @@ services:
     hostname: consul-dc1-server-2
     volumes:
       - ./consul_server/config/consul-dc1-server-2/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc1-server-2/tls.json:/consul/config/tls.json
     networks:
       consul-poc:
         ipv4_address: 172.16.0.12
@@ -64,7 +70,8 @@ services:
       - "18600:8600"
       - "18600:8600/udp"
     volumes:
-    - ./consul_server/config/consul-dc1-server-3/config.json:/consul/config/config.json
+      - ./consul_server/config/consul-dc1-server-3/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc1-server-3/tls.json:/consul/config/tls.json
     networks:
       consul-poc:
         ipv4_address: 172.16.0.13
@@ -74,6 +81,7 @@ services:
     hostname: consul-dc2-server-1
     volumes:
       - ./consul_server/config/consul-dc2-server-1/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc2-server-1/tls.json:/consul/config/tls.json
     networks:
       consul-poc:
         ipv4_address: 172.16.1.11
@@ -83,6 +91,7 @@ services:
     hostname: consul-dc2-server-2
     volumes:
       - ./consul_server/config/consul-dc2-server-2/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc2-server-2/tls.json:/consul/config/tls.json
     networks:
       consul-poc:
         ipv4_address: 172.16.1.12
@@ -96,7 +105,8 @@ services:
       - "28600:8600"
       - "28600:8600/udp"
     volumes:
-    - ./consul_server/config/consul-dc2-server-3/config.json:/consul/config/config.json
+      - ./consul_server/config/consul-dc2-server-3/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc2-server-3/tls.json:/consul/config/tls.json
     networks:
       consul-poc:
         ipv4_address: 172.16.1.13
@@ -106,6 +116,7 @@ services:
     hostname: consul-dc3-server-1
     volumes:
       - ./consul_server/config/consul-dc3-server-1/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc3-server-1/tls.json:/consul/config/tls.json
     networks:
       consul-poc:
         ipv4_address: 172.16.2.11
@@ -115,6 +126,7 @@ services:
     hostname: consul-dc3-server-2
     volumes:
       - ./consul_server/config/consul-dc3-server-2/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc3-server-2/tls.json:/consul/config/tls.json
     networks:
       consul-poc:
         ipv4_address: 172.16.2.12
@@ -128,7 +140,8 @@ services:
       - "38600:8600"
       - "38600:8600/udp"
     volumes:
-    - ./consul_server/config/consul-dc3-server-3/config.json:/consul/config/config.json
+      - ./consul_server/config/consul-dc3-server-3/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc3-server-2/tls.json:/consul/config/tls.json
     networks:
       consul-poc:
         ipv4_address: 172.16.2.13
