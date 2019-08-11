@@ -9,6 +9,7 @@ set -exu
 
 declare gossip_encryption_key='VhPBrehv0113moXGHevkEA=='
 declare primary_datacenter='dc1'
+declare retry_join_wan='[]'
 
 declare -a client_names=(
   consul-dc1-agent-1
@@ -36,6 +37,10 @@ declare -A servers_to_join=(
   [dc3]='["172.16.2.11", "172.16.2.12", "172.16.2.13"]'
 )
 
+for dc_servers in "${servers_to_join[@]}"; do
+  retry_join_wan=$(jq --argjson dcs "$dc_servers" '. + $dcs' <<< "$retry_join_wan")
+done
+
 for client in "${client_names[@]}"; do
   mkdir -p "consul_client/config/$client"
   dc=${client#consul-}
@@ -56,6 +61,7 @@ for server in "${server_names[@]}"; do
      --arg primary_datacenter "$primary_datacenter" \
      --arg datacenter "$dc" \
      --arg node_name "$server" \
+     --argjson retry_join_wan "${retry_join_wan[@]}" \
      --argjson servers_to_join "${servers_to_join["$dc"]}" \
      -f templates/server.jq \
    > "consul_server/config/$server/config.json"

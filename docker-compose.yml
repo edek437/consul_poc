@@ -11,7 +11,7 @@ services:
     volumes:
       - ./consul_client/config/consul-dc1-agent-1/config.json:/consul/config/config.json
     networks:
-      consul-dc1: {}
+      consul-poc: {}
 
   consul-dc1-agent-2:
     <<: *consul-base
@@ -19,23 +19,23 @@ services:
     volumes:
       - ./consul_client/config/consul-dc1-agent-2/config.json:/consul/config/config.json
     networks:
-      consul-dc1: {}
+      consul-poc: {}
 
-  # consul-dc2-agent-1:
-  #   <<: *consul-base
-  #   hostname: consul-dc2-agent-1
-  #   volumes:
-  #     - ./consul_client/config/consul-dc2-agent-1/config.json:/consul/config/config.json
-  #   networks:
-  #     consul-dc2: {}
+  consul-dc2-agent-1:
+    <<: *consul-base
+    hostname: consul-dc2-agent-1
+    volumes:
+      - ./consul_client/config/consul-dc2-agent-1/config.json:/consul/config/config.json
+    networks:
+      consul-poc: {}
 
-  # consul-dc3-agent-1:
-  #   <<: *consul-base
-  #   hostname: consul-dc3-agent-1
-  #   volumes:
-  #     - ./consul_client/config/consul-dc3-agent-1/config.json:/consul/config/config.json
-  #   networks:
-  #     consul-dc3: {}
+  consul-dc3-agent-1:
+    <<: *consul-base
+    hostname: consul-dc3-agent-1
+    volumes:
+      - ./consul_client/config/consul-dc3-agent-1/config.json:/consul/config/config.json
+    networks:
+      consul-poc: {}
 
   consul-dc1-server-1:
     <<: *consul-base
@@ -43,7 +43,7 @@ services:
     volumes:
       - ./consul_server/config/consul-dc1-server-1/config.json:/consul/config/config.json
     networks:
-      consul-dc1:
+      consul-poc:
         ipv4_address: 172.16.0.11
 
   consul-dc1-server-2:
@@ -52,7 +52,7 @@ services:
     volumes:
       - ./consul_server/config/consul-dc1-server-2/config.json:/consul/config/config.json
     networks:
-      consul-dc1:
+      consul-poc:
         ipv4_address: 172.16.0.12
 
   consul-dc1-server-3:
@@ -66,19 +66,75 @@ services:
     volumes:
     - ./consul_server/config/consul-dc1-server-3/config.json:/consul/config/config.json
     networks:
-      consul-dc1:
+      consul-poc:
         ipv4_address: 172.16.0.13
 
+  consul-dc2-server-1:
+    <<: *consul-base
+    hostname: consul-dc2-server-1
+    volumes:
+      - ./consul_server/config/consul-dc2-server-1/config.json:/consul/config/config.json
+    networks:
+      consul-poc:
+        ipv4_address: 172.16.1.11
+
+  consul-dc2-server-2:
+    <<: *consul-base
+    hostname: consul-dc2-server-2
+    volumes:
+      - ./consul_server/config/consul-dc2-server-2/config.json:/consul/config/config.json
+    networks:
+      consul-poc:
+        ipv4_address: 172.16.1.12
+
+  consul-dc2-server-3:
+    <<: *consul-base
+    hostname: consul-dc2-server-3
+    ports:
+      - "28400:8400"
+      - "28500:8500"
+      - "28600:8600"
+      - "28600:8600/udp"
+    volumes:
+    - ./consul_server/config/consul-dc2-server-3/config.json:/consul/config/config.json
+    networks:
+      consul-poc:
+        ipv4_address: 172.16.1.13
+
+  consul-dc3-server-1:
+    <<: *consul-base
+    hostname: consul-dc3-server-1
+    volumes:
+      - ./consul_server/config/consul-dc3-server-1/config.json:/consul/config/config.json
+    networks:
+      consul-poc:
+        ipv4_address: 172.16.2.11
+
+  consul-dc3-server-2:
+    <<: *consul-base
+    hostname: consul-dc3-server-2
+    volumes:
+      - ./consul_server/config/consul-dc3-server-2/config.json:/consul/config/config.json
+    networks:
+      consul-poc:
+        ipv4_address: 172.16.2.12
+
+  consul-dc3-server-3:
+    <<: *consul-base
+    hostname: consul-dc3-server-3
+    ports:
+      - "38400:8400"
+      - "38500:8500"
+      - "38600:8600"
+      - "38600:8600/udp"
+    volumes:
+    - ./consul_server/config/consul-dc3-server-3/config.json:/consul/config/config.json
+    networks:
+      consul-poc:
+        ipv4_address: 172.16.2.13
+
 networks:
-  consul-dc1:
+  consul-poc:
     ipam:
       config:
-        - subnet: 172.16.0.0/24
-  consul-dc2:
-    ipam:
-      config:
-        - subnet: 172.16.1.0/24
-  consul-dc3:
-    ipam:
-      config:
-        - subnet: 172.16.2.0/24
+        - subnet: 172.16.0.0/22
