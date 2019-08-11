@@ -1,4 +1,5 @@
 {
+  "client_addr": "0.0.0.0",
   "datacenter": $datacenter,
   "data_dir": "/consul/data/",
   "log_level": "DEBUG",
