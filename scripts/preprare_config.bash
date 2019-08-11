@@ -7,6 +7,9 @@ set -exu
   exit 1
 }
 
+declare gossip_encryption_key='VhPBrehv0113moXGHevkEA=='
+declare primary_datacenter='dc1'
+
 declare -a client_names=(
   consul-dc1-agent-1
   consul-dc1-agent-2
@@ -37,7 +40,8 @@ for client in "${client_names[@]}"; do
   mkdir -p "consul_client/config/$client"
   dc=${client#consul-}
   dc=${dc%%-*}
-  jq -n -e --arg datacenter "$dc" \
+  jq -n -e --arg gossip_encryption_key "$gossip_encryption_key" \
+     --arg datacenter "$dc" \
      --arg node_name "$client" \
      --argjson servers_to_join "${servers_to_join["$dc"]}" \
      -f templates/client.jq \
@@ -48,7 +52,9 @@ for server in "${server_names[@]}"; do
   mkdir -p "consul_server/config/$server"
   dc=${server#consul-}
   dc=${dc%%-*}
-  jq -n -e --arg datacenter "$dc" \
+  jq -n -e --arg gossip_encryption_key "$gossip_encryption_key" \
+     --arg primary_datacenter "$primary_datacenter" \
+     --arg datacenter "$dc" \
      --arg node_name "$server" \
      --argjson servers_to_join "${servers_to_join["$dc"]}" \
      -f templates/server.jq \

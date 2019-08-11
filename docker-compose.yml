@@ -9,7 +9,7 @@ services:
     <<: *consul-base
     hostname: consul-dc1-agent-1
     volumes:
-      - ./consul_client/config/consul-agent-1/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc1-agent-1/config.json:/consul/config/config.json
     networks:
       consul-dc1: {}
 
@@ -17,7 +17,7 @@ services:
     <<: *consul-base
     hostname: consul-dc1-agent-2
     volumes:
-      - ./consul_client/config/consul-agent-2/config.json:/consul/config/config.json
+      - ./consul_client/config/consul-dc1-agent-2/config.json:/consul/config/config.json
     networks:
       consul-dc1: {}
 
