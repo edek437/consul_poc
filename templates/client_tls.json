@@ -1,0 +1,10 @@
+{
+  "verify_incoming": true,
+  "ca_file": "/etc/ssl/certs/consul-ca.pem",
+  "cert_file": "/etc/ssl/certs/client.pem",
+  "key_file": "/home/consul/ssl/private/client-key.pem",
+  "ports": {
+    "http": -1,
+    "https": 8501
+  }
+}

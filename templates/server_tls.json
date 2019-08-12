@@ -1,0 +1,13 @@
+{
+  "verify_outgoing": true,
+  "verify_incoming": false,
+  "verify_incoming_rpc": true,
+  "verify_server_hostname": true,
+  "ca_file": "/etc/ssl/certs/consul-ca.pem",
+  "cert_file": "/etc/ssl/certs/server.pem",
+  "key_file": "/home/consul/ssl/private/server-key.pem",
+  "ports": {
+    "http": -1,
+    "https": 8501
+  }
+}

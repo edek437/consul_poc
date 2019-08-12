@@ -10,7 +10,10 @@ services:
     hostname: consul-dc1-agent-1
     volumes:
       - ./consul_client/config/consul-dc1-agent-1/config.json:/consul/config/config.json
-      - ./consul_client/config/consul-dc1-agent-1/tls.json:/consul/config/tls.json
+      - ./templates/client_tls.json:/consul/config/tls.json
+      - ./template/ca.pem:/etc/ssl/certs/consul-ca.pem
+      - ./consul_client/certs/consul-dc1-agent-1/client.pem:/etc/ssl/certs/client.pem
+      - ./consul_client/certs/consul-dc1-agent-1/client-key.pem:/home/consul/ssl/private/client-key.pem
     networks:
       consul-poc: {}
 
@@ -19,7 +22,10 @@ services:
     hostname: consul-dc1-agent-2
     volumes:
       - ./consul_client/config/consul-dc1-agent-2/config.json:/consul/config/config.json
-      - ./consul_client/config/consul-dc1-agent-2/tls.json:/consul/config/tls.json
+      - ./templates/client_tls.json:/consul/config/tls.json
+      - ./template/ca.pem:/etc/ssl/certs/consul-ca.pem
+      - ./consul_client/certs/consul-dc1-agent-2/client.pem:/etc/ssl/certs/client.pem
+      - ./consul_client/certs/consul-dc1-agent-2/client-key.pem:/home/consul/ssl/private/client-key.pem
     networks:
       consul-poc: {}
 
@@ -28,7 +34,10 @@ services:
     hostname: consul-dc2-agent-1
     volumes:
       - ./consul_client/config/consul-dc2-agent-1/config.json:/consul/config/config.json
-      - ./consul_client/config/consul-dc2-agent-1/tls.json:/consul/config/tls.json
+      - ./templates/client_tls.json:/consul/config/tls.json
+      - ./template/ca.pem:/etc/ssl/certs/consul-ca.pem
+      - ./consul_client/certs/consul-dc2-agent-1/client.pem:/etc/ssl/certs/client.pem
+      - ./consul_client/certs/consul-dc2-agent-1/client-key.pem:/home/consul/ssl/private/client-key.pem
     networks:
       consul-poc: {}
 
@@ -37,7 +46,10 @@ services:
     hostname: consul-dc3-agent-1
     volumes:
       - ./consul_client/config/consul-dc3-agent-1/config.json:/consul/config/config.json
-      - ./consul_client/config/consul-dc3-agent-1/tls.json:/consul/config/tls.json
+      - ./templates/client_tls.json:/consul/config/tls.json
+      - ./template/ca.pem:/etc/ssl/certs/consul-ca.pem
+      - ./consul_client/certs/consul-dc3-agent-1/client.pem:/etc/ssl/certs/client.pem
+      - ./consul_client/certs/consul-dc3-agent-1/client-key.pem:/home/consul/ssl/private/client-key.pem
     networks:
       consul-poc: {}
 
@@ -46,7 +58,10 @@ services:
     hostname: consul-dc1-server-1
     volumes:
       - ./consul_server/config/consul-dc1-server-1/config.json:/consul/config/config.json
-      - ./consul_client/config/consul-dc1-server-1/tls.json:/consul/config/tls.json
+      - ./templates/server_tls.json:/consul/config/tls.json
+      - ./template/ca.pem:/etc/ssl/certs/consul-ca.pem
+      - ./consul_server/certs/consul-dc1-server-1/server.pem:/etc/ssl/certs/server.pem
+      - ./consul_server/certs/consul-dc1-server-1/server-key.pem:/home/consul/ssl/private/server-key.pem
     networks:
       consul-poc:
         ipv4_address: 172.16.0.11
@@ -56,7 +71,10 @@ services:
     hostname: consul-dc1-server-2
     volumes:
       - ./consul_server/config/consul-dc1-server-2/config.json:/consul/config/config.json
-      - ./consul_client/config/consul-dc1-server-2/tls.json:/consul/config/tls.json
+      - ./templates/server_tls.json:/consul/config/tls.json
+      - ./template/ca.pem:/etc/ssl/certs/consul-ca.pem
+      - ./consul_server/certs/consul-dc1-server-2/server.pem:/etc/ssl/certs/server.pem
+      - ./consul_server/certs/consul-dc1-server-2/server-key.pem:/home/consul/ssl/private/server-key.pem
     networks:
       consul-poc:
         ipv4_address: 172.16.0.12
@@ -71,7 +89,10 @@ services:
       - "18600:8600/udp"
     volumes:
       - ./consul_server/config/consul-dc1-server-3/config.json:/consul/config/config.json
-      - ./consul_client/config/consul-dc1-server-3/tls.json:/consul/config/tls.json
+      - ./templates/server_tls.json:/consul/config/tls.json
+      - ./template/ca.pem:/etc/ssl/certs/consul-ca.pem
+      - ./consul_server/certs/consul-dc1-server-3/server.pem:/etc/ssl/certs/server.pem
+      - ./consul_server/certs/consul-dc1-server-3/server-key.pem:/home/consul/ssl/private/server-key.pem
     networks:
       consul-poc:
         ipv4_address: 172.16.0.13
@@ -81,7 +102,10 @@ services:
     hostname: consul-dc2-server-1
     volumes:
       - ./consul_server/config/consul-dc2-server-1/config.json:/consul/config/config.json
-      - ./consul_client/config/consul-dc2-server-1/tls.json:/consul/config/tls.json
+      - ./templates/server_tls.json:/consul/config/tls.json
+      - ./template/ca.pem:/etc/ssl/certs/consul-ca.pem
+      - ./consul_server/certs/consul-dc2-server-1/server.pem:/etc/ssl/certs/server.pem
+      - ./consul_server/certs/consul-dc2-server-1/server-key.pem:/home/consul/ssl/private/server-key.pem
     networks:
       consul-poc:
         ipv4_address: 172.16.1.11
@@ -91,7 +115,10 @@ services:
     hostname: consul-dc2-server-2
     volumes:
       - ./consul_server/config/consul-dc2-server-2/config.json:/consul/config/config.json
-      - ./consul_client/config/consul-dc2-server-2/tls.json:/consul/config/tls.json
+      - ./templates/server_tls.json:/consul/config/tls.json
+      - ./template/ca.pem:/etc/ssl/certs/consul-ca.pem
+      - ./consul_server/certs/consul-dc2-server-2/server.pem:/etc/ssl/certs/server.pem
+      - ./consul_server/certs/consul-dc2-server-2/server-key.pem:/home/consul/ssl/private/server-key.pem
     networks:
       consul-poc:
         ipv4_address: 172.16.1.12
@@ -106,7 +133,10 @@ services:
       - "28600:8600/udp"
     volumes:
       - ./consul_server/config/consul-dc2-server-3/config.json:/consul/config/config.json
-      - ./consul_client/config/consul-dc2-server-3/tls.json:/consul/config/tls.json
+      - ./templates/server_tls.json:/consul/config/tls.json
+      - ./template/ca.pem:/etc/ssl/certs/consul-ca.pem
+      - ./consul_server/certs/consul-dc2-server-3/server.pem:/etc/ssl/certs/server.pem
+      - ./consul_server/certs/consul-dc2-server-3/server-key.pem:/home/consul/ssl/private/server-key.pem
     networks:
       consul-poc:
         ipv4_address: 172.16.1.13
@@ -116,7 +146,10 @@ services:
     hostname: consul-dc3-server-1
     volumes:
       - ./consul_server/config/consul-dc3-server-1/config.json:/consul/config/config.json
-      - ./consul_client/config/consul-dc3-server-1/tls.json:/consul/config/tls.json
+      - ./templates/server_tls.json:/consul/config/tls.json
+      - ./template/ca.pem:/etc/ssl/certs/consul-ca.pem
+      - ./consul_server/certs/consul-dc3-server-1/server.pem:/etc/ssl/certs/server.pem
+      - ./consul_server/certs/consul-dc3-server-1/server-key.pem:/home/consul/ssl/private/server-key.pem
     networks:
       consul-poc:
         ipv4_address: 172.16.2.11
@@ -126,7 +159,10 @@ services:
     hostname: consul-dc3-server-2
     volumes:
       - ./consul_server/config/consul-dc3-server-2/config.json:/consul/config/config.json
-      - ./consul_client/config/consul-dc3-server-2/tls.json:/consul/config/tls.json
+      - ./templates/server_tls.json:/consul/config/tls.json
+      - ./template/ca.pem:/etc/ssl/certs/consul-ca.pem
+      - ./consul_server/certs/consul-dc3-server-2/server.pem:/etc/ssl/certs/server.pem
+      - ./consul_server/certs/consul-dc3-server-2/server-key.pem:/home/consul/ssl/private/server-key.pem
     networks:
       consul-poc:
         ipv4_address: 172.16.2.12
@@ -141,7 +177,10 @@ services:
       - "38600:8600/udp"
     volumes:
       - ./consul_server/config/consul-dc3-server-3/config.json:/consul/config/config.json
-      - ./consul_client/config/consul-dc3-server-2/tls.json:/consul/config/tls.json
+      - ./templates/server_tls.json:/consul/config/tls.json
+      - ./template/ca.pem:/etc/ssl/certs/consul-ca.pem
+      - ./consul_server/certs/consul-dc3-server-3/server.pem:/etc/ssl/certs/server.pem
+      - ./consul_server/certs/consul-dc3-server-3/server-key.pem:/home/consul/ssl/private/server-key.pem
     networks:
       consul-poc:
         ipv4_address: 172.16.2.13

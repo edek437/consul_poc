@@ -63,7 +63,7 @@ for client in "${client_names[@]}"; do
     cfssl gencert -ca="$cosul_poc_root/templates/ca.pem" \
       -ca-key="$cosul_poc_root/templates/ca-key.pem" \
       -config="$cosul_poc_root/templates/ca-config.json" \
-      -profile=client 'client.json' | cfssljson -bare "$client"
+      -profile=client 'client.json' | cfssljson -bare client
   )
 done; unset client dc
 
@@ -89,6 +89,6 @@ for server in "${server_names[@]}"; do
     cfssl gencert -ca="$cosul_poc_root/templates/ca.pem" \
       -ca-key="$cosul_poc_root/templates/ca-key.pem" \
       -config="$cosul_poc_root/templates/ca-config.json" \
-      -profile=server 'server.json' | cfssljson -bare "$server"
+      -profile=server 'server.json' | cfssljson -bare server
   )
 done; unset server dc
