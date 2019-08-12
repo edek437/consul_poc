@@ -4,7 +4,7 @@
   "primary_datacenter": $primary_datacenter,
   "data_dir": "/consul/data/",
   "encrypt": $gossip_encryption_key,
-  "log_level": "DEBUG",
+  "log_level": "INFO",
   "enable_syslog": false,
   "enable_debug": true,
   "node_name": $node_name,

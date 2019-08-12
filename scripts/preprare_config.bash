@@ -64,6 +64,9 @@ for client in "${client_names[@]}"; do
       -ca-key="$cosul_poc_root/templates/ca-key.pem" \
       -config="$cosul_poc_root/templates/ca-config.json" \
       -profile=client 'client.json' | cfssljson -bare client
+    # consul in container has uid(100) and guid(1000) and my uer has uid(1000) guid(1000)
+    # so this is hack to give consul user perms to certs without sudo chown
+    chmod g+rw *
   )
 done; unset client dc
 
@@ -90,5 +93,8 @@ for server in "${server_names[@]}"; do
       -ca-key="$cosul_poc_root/templates/ca-key.pem" \
       -config="$cosul_poc_root/templates/ca-config.json" \
       -profile=server 'server.json' | cfssljson -bare server
+    # consul in container has uid(100) and guid(1000) and my uer has uid(1000) guid(1000)
+    # so this is hack to give consul user perms to certs without sudo chown
+    chmod g+rw *
   )
 done; unset server dc
