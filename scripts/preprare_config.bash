@@ -45,6 +45,18 @@ for dc_servers in "${servers_to_join[@]}"; do
   retry_join_wan=$(jq --argjson dcs "$dc_servers" '. + $dcs' <<< "$retry_join_wan")
 done
 
+for dc in "${!servers_to_join[@]}"; do
+  (
+    mkdir -p "consul_server/certs/consul-$dc"
+    cd "consul_server/certs/consul-$dc"
+    echo '{"key":{"algo":"rsa","size":2048}}' \
+    | cfssl gencert \
+      -ca="$cosul_poc_root/templates/ca.pem" \
+      -ca-key="$cosul_poc_root/templates/ca-key.pem" \
+      -profile=client - | cfssljson -bare cli
+  )
+done
+
 for client in "${client_names[@]}"; do
   mkdir -p "consul_client/config/$client"
   dc=${client#consul-}

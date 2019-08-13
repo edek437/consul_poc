@@ -14,6 +14,10 @@ services:
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_client/certs/consul-dc1-agent-1/client.pem:/etc/ssl/certs/client.pem
       - ./consul_client/certs/consul-dc1-agent-1/client-key.pem:/home/consul/ssl/private/client-key.pem
+      - ./consul_server/certs/consul-dc1/cli.pem:/etc/ssl/certs/cli.pem
+      - ./consul_server/certs/consul-dc1/cli-key.pem:/home/consul/ssl/private/cli-key.pem
+    env_file:
+      - ./templates/consul-cli.env
     networks:
       consul-poc: {}
 
@@ -26,6 +30,10 @@ services:
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_client/certs/consul-dc1-agent-2/client.pem:/etc/ssl/certs/client.pem
       - ./consul_client/certs/consul-dc1-agent-2/client-key.pem:/home/consul/ssl/private/client-key.pem
+      - ./consul_server/certs/consul-dc1/cli.pem:/etc/ssl/certs/cli.pem
+      - ./consul_server/certs/consul-dc1/cli-key.pem:/home/consul/ssl/private/cli-key.pem
+    env_file:
+      - ./templates/consul-cli.env
     networks:
       consul-poc: {}
 
@@ -38,6 +46,10 @@ services:
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_client/certs/consul-dc2-agent-1/client.pem:/etc/ssl/certs/client.pem
       - ./consul_client/certs/consul-dc2-agent-1/client-key.pem:/home/consul/ssl/private/client-key.pem
+      - ./consul_server/certs/consul-dc2/cli.pem:/etc/ssl/certs/cli.pem
+      - ./consul_server/certs/consul-dc2/cli-key.pem:/home/consul/ssl/private/cli-key.pem
+    env_file:
+      - ./templates/consul-cli.env
     networks:
       consul-poc: {}
 
@@ -50,6 +62,10 @@ services:
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_client/certs/consul-dc3-agent-1/client.pem:/etc/ssl/certs/client.pem
       - ./consul_client/certs/consul-dc3-agent-1/client-key.pem:/home/consul/ssl/private/client-key.pem
+      - ./consul_server/certs/consul-dc3/cli.pem:/etc/ssl/certs/cli.pem
+      - ./consul_server/certs/consul-dc3/cli-key.pem:/home/consul/ssl/private/cli-key.pem
+    env_file:
+      - ./templates/consul-cli.env
     networks:
       consul-poc: {}
 
@@ -62,6 +78,10 @@ services:
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc1-server-1/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc1-server-1/server-key.pem:/home/consul/ssl/private/server-key.pem
+      - ./consul_server/certs/consul-dc1/cli.pem:/etc/ssl/certs/cli.pem
+      - ./consul_server/certs/consul-dc1/cli-key.pem:/home/consul/ssl/private/cli-key.pem
+    env_file:
+      - ./templates/consul-cli.env
     networks:
       consul-poc:
         ipv4_address: 172.16.0.11
@@ -75,6 +95,10 @@ services:
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc1-server-2/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc1-server-2/server-key.pem:/home/consul/ssl/private/server-key.pem
+      - ./consul_server/certs/consul-dc1/cli.pem:/etc/ssl/certs/cli.pem
+      - ./consul_server/certs/consul-dc1/cli-key.pem:/home/consul/ssl/private/cli-key.pem
+    env_file:
+      - ./templates/consul-cli.env
     networks:
       consul-poc:
         ipv4_address: 172.16.0.12
@@ -94,6 +118,10 @@ services:
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc1-server-3/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc1-server-3/server-key.pem:/home/consul/ssl/private/server-key.pem
+      - ./consul_server/certs/consul-dc1/cli.pem:/etc/ssl/certs/cli.pem
+      - ./consul_server/certs/consul-dc1/cli-key.pem:/home/consul/ssl/private/cli-key.pem
+    env_file:
+      - ./templates/consul-cli.env
     networks:
       consul-poc:
         ipv4_address: 172.16.0.13
@@ -107,6 +135,10 @@ services:
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc2-server-1/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc2-server-1/server-key.pem:/home/consul/ssl/private/server-key.pem
+      - ./consul_server/certs/consul-dc2/cli.pem:/etc/ssl/certs/cli.pem
+      - ./consul_server/certs/consul-dc2/cli-key.pem:/home/consul/ssl/private/cli-key.pem
+    env_file:
+      - ./templates/consul-cli.env
     networks:
       consul-poc:
         ipv4_address: 172.16.1.11
@@ -120,6 +152,10 @@ services:
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc2-server-2/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc2-server-2/server-key.pem:/home/consul/ssl/private/server-key.pem
+      - ./consul_server/certs/consul-dc2/cli.pem:/etc/ssl/certs/cli.pem
+      - ./consul_server/certs/consul-dc2/cli-key.pem:/home/consul/ssl/private/cli-key.pem
+    env_file:
+      - ./templates/consul-cli.env
     networks:
       consul-poc:
         ipv4_address: 172.16.1.12
@@ -139,6 +175,10 @@ services:
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc2-server-3/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc2-server-3/server-key.pem:/home/consul/ssl/private/server-key.pem
+      - ./consul_server/certs/consul-dc2/cli.pem:/etc/ssl/certs/cli.pem
+      - ./consul_server/certs/consul-dc2/cli-key.pem:/home/consul/ssl/private/cli-key.pem
+    env_file:
+      - ./templates/consul-cli.env
     networks:
       consul-poc:
         ipv4_address: 172.16.1.13
@@ -152,6 +192,10 @@ services:
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc3-server-1/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc3-server-1/server-key.pem:/home/consul/ssl/private/server-key.pem
+      - ./consul_server/certs/consul-dc3/cli.pem:/etc/ssl/certs/cli.pem
+      - ./consul_server/certs/consul-dc3/cli-key.pem:/home/consul/ssl/private/cli-key.pem
+    env_file:
+      - ./templates/consul-cli.env
     networks:
       consul-poc:
         ipv4_address: 172.16.2.11
@@ -165,6 +209,10 @@ services:
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc3-server-2/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc3-server-2/server-key.pem:/home/consul/ssl/private/server-key.pem
+      - ./consul_server/certs/consul-dc3/cli.pem:/etc/ssl/certs/cli.pem
+      - ./consul_server/certs/consul-dc3/cli-key.pem:/home/consul/ssl/private/cli-key.pem
+    env_file:
+      - ./templates/consul-cli.env
     networks:
       consul-poc:
         ipv4_address: 172.16.2.12
@@ -184,6 +232,10 @@ services:
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc3-server-3/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc3-server-3/server-key.pem:/home/consul/ssl/private/server-key.pem
+      - ./consul_server/certs/consul-dc3/cli.pem:/etc/ssl/certs/cli.pem
+      - ./consul_server/certs/consul-dc3/cli-key.pem:/home/consul/ssl/private/cli-key.pem
+    env_file:
+      - ./templates/consul-cli.env
     networks:
       consul-poc:
         ipv4_address: 172.16.2.13
