@@ -1,5 +1,4 @@
 {
-  "client_addr": "0.0.0.0",
   "datacenter": $datacenter,
   "data_dir": "/consul/data/",
   "encrypt": $gossip_encryption_key,
