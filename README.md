@@ -22,3 +22,4 @@ TODO:
 - [ ] research consul-replicate for kv state replication??
 - [ ] add basic infra checks (maybe nagios/other monitoring framework or custom ones)
 - [ ] research adding watches to KV for auditing changes
+- [ ] research Consul servers behind nginx/haproxy

@@ -7,39 +7,7 @@ set -exu
   exit 1
 }
 
-declare cosul_poc_root=$PWD
-declare ca_file='templates/ca.pem'
-declare ca_key_file='templates/ca-key.pem'
-
-declare gossip_encryption_key='VhPBrehv0113moXGHevkEA=='
-declare primary_datacenter='dc1'
-declare retry_join_wan='[]'
-
-declare -a client_names=(
-  consul-dc1-agent-1
-  consul-dc1-agent-2
-  consul-dc1-agent-3
-  consul-dc2-agent-1
-  consul-dc3-agent-1
-)
-
-declare -a server_names=(
-  consul-dc1-server-1
-  consul-dc1-server-2
-  consul-dc1-server-3
-  consul-dc2-server-1
-  consul-dc2-server-2
-  consul-dc2-server-3
-  consul-dc3-server-1
-  consul-dc3-server-2
-  consul-dc3-server-3
-)
-
-declare -A servers_to_join=(
-  [dc1]='["172.16.0.11", "172.16.0.12", "172.16.0.13"]'
-  [dc2]='["172.16.1.11", "172.16.1.12", "172.16.1.13"]'
-  [dc3]='["172.16.2.11", "172.16.2.12", "172.16.2.13"]'
-)
+. scripts/vars.bash
 
 for dc_servers in "${servers_to_join[@]}"; do
   retry_join_wan=$(jq --argjson dcs "$dc_servers" '. + $dcs' <<< "$retry_join_wan")
@@ -110,3 +78,9 @@ for server in "${server_names[@]}"; do
     chmod g+rw *
   )
 done; unset server dc
+
+for agent in "${primary_dc_agent_names[@]}"; do
+  jq -n -e --arg master_token "$master_token" \
+    -f "$cosul_poc_root/templates/acl_master_token.jq" \
+    > "$cosul_poc_root/consul_server/config/$agent/master_token.json"
+done; unset agent

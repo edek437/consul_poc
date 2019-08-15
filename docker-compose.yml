@@ -11,6 +11,7 @@ services:
     volumes:
       - ./consul_client/config/consul-dc1-agent-1/config.json:/consul/config/config.json
       - ./templates/client_tls.json:/consul/config/tls.json
+      - ./templates/acl.json:/consul/config/acl.json
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_client/certs/consul-dc1-agent-1/client.pem:/etc/ssl/certs/client.pem
       - ./consul_client/certs/consul-dc1-agent-1/client-key.pem:/home/consul/ssl/private/client-key.pem
@@ -27,6 +28,7 @@ services:
     volumes:
       - ./consul_client/config/consul-dc1-agent-2/config.json:/consul/config/config.json
       - ./templates/client_tls.json:/consul/config/tls.json
+      - ./templates/acl.json:/consul/config/acl.json
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_client/certs/consul-dc1-agent-2/client.pem:/etc/ssl/certs/client.pem
       - ./consul_client/certs/consul-dc1-agent-2/client-key.pem:/home/consul/ssl/private/client-key.pem
@@ -43,6 +45,7 @@ services:
     volumes:
       - ./consul_client/config/consul-dc2-agent-1/config.json:/consul/config/config.json
       - ./templates/client_tls.json:/consul/config/tls.json
+      - ./templates/acl.json:/consul/config/acl.json
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_client/certs/consul-dc2-agent-1/client.pem:/etc/ssl/certs/client.pem
       - ./consul_client/certs/consul-dc2-agent-1/client-key.pem:/home/consul/ssl/private/client-key.pem
@@ -59,6 +62,7 @@ services:
     volumes:
       - ./consul_client/config/consul-dc3-agent-1/config.json:/consul/config/config.json
       - ./templates/client_tls.json:/consul/config/tls.json
+      - ./templates/acl.json:/consul/config/acl.json
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_client/certs/consul-dc3-agent-1/client.pem:/etc/ssl/certs/client.pem
       - ./consul_client/certs/consul-dc3-agent-1/client-key.pem:/home/consul/ssl/private/client-key.pem
@@ -74,7 +78,9 @@ services:
     hostname: consul-dc1-server-1
     volumes:
       - ./consul_server/config/consul-dc1-server-1/config.json:/consul/config/config.json
+      - ./consul_server/config/consul-dc1-server-1/master_token.json:/consul/config/master_token.json
       - ./templates/server_tls.json:/consul/config/tls.json
+      - ./templates/acl.json:/consul/config/acl.json
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc1-server-1/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc1-server-1/server-key.pem:/home/consul/ssl/private/server-key.pem
@@ -91,7 +97,9 @@ services:
     hostname: consul-dc1-server-2
     volumes:
       - ./consul_server/config/consul-dc1-server-2/config.json:/consul/config/config.json
+      - ./consul_server/config/consul-dc1-server-1/master_token.json:/consul/config/master_token.json
       - ./templates/server_tls.json:/consul/config/tls.json
+      - ./templates/acl.json:/consul/config/acl.json
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc1-server-2/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc1-server-2/server-key.pem:/home/consul/ssl/private/server-key.pem
@@ -114,7 +122,9 @@ services:
       - "18600:8600/udp"
     volumes:
       - ./consul_server/config/consul-dc1-server-3/config.json:/consul/config/config.json
+      - ./consul_server/config/consul-dc1-server-1/master_token.json:/consul/config/master_token.json
       - ./templates/server_tls.json:/consul/config/tls.json
+      - ./templates/acl.json:/consul/config/acl.json
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc1-server-3/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc1-server-3/server-key.pem:/home/consul/ssl/private/server-key.pem
@@ -132,6 +142,7 @@ services:
     volumes:
       - ./consul_server/config/consul-dc2-server-1/config.json:/consul/config/config.json
       - ./templates/server_tls.json:/consul/config/tls.json
+      - ./templates/acl.json:/consul/config/acl.json
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc2-server-1/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc2-server-1/server-key.pem:/home/consul/ssl/private/server-key.pem
@@ -149,6 +160,7 @@ services:
     volumes:
       - ./consul_server/config/consul-dc2-server-2/config.json:/consul/config/config.json
       - ./templates/server_tls.json:/consul/config/tls.json
+      - ./templates/acl.json:/consul/config/acl.json
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc2-server-2/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc2-server-2/server-key.pem:/home/consul/ssl/private/server-key.pem
@@ -172,6 +184,7 @@ services:
     volumes:
       - ./consul_server/config/consul-dc2-server-3/config.json:/consul/config/config.json
       - ./templates/server_tls.json:/consul/config/tls.json
+      - ./templates/acl.json:/consul/config/acl.json
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc2-server-3/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc2-server-3/server-key.pem:/home/consul/ssl/private/server-key.pem
@@ -189,6 +202,7 @@ services:
     volumes:
       - ./consul_server/config/consul-dc3-server-1/config.json:/consul/config/config.json
       - ./templates/server_tls.json:/consul/config/tls.json
+      - ./templates/acl.json:/consul/config/acl.json
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc3-server-1/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc3-server-1/server-key.pem:/home/consul/ssl/private/server-key.pem
@@ -206,6 +220,7 @@ services:
     volumes:
       - ./consul_server/config/consul-dc3-server-2/config.json:/consul/config/config.json
       - ./templates/server_tls.json:/consul/config/tls.json
+      - ./templates/acl.json:/consul/config/acl.json
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc3-server-2/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc3-server-2/server-key.pem:/home/consul/ssl/private/server-key.pem
@@ -229,6 +244,7 @@ services:
     volumes:
       - ./consul_server/config/consul-dc3-server-3/config.json:/consul/config/config.json
       - ./templates/server_tls.json:/consul/config/tls.json
+      - ./templates/acl.json:/consul/config/acl.json
       - ./templates/ca.pem:/etc/ssl/certs/consul-ca.pem
       - ./consul_server/certs/consul-dc3-server-3/server.pem:/etc/ssl/certs/server.pem
       - ./consul_server/certs/consul-dc3-server-3/server-key.pem:/home/consul/ssl/private/server-key.pem
