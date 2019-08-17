@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-set -exu
+set -eu
+
+if [[ ${DEBUG:-} == true ]]; then
+  set -x
+fi
 
 [[ -f docker-compose.yml ]] || {
   echo "Please run me from dir with docker-compose.yml"
