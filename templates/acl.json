@@ -2,6 +2,7 @@
   "acl": [
     {
       "default_policy": "deny",
+      "enable_key_list_policy": true,
       "enable_token_persistence": true,
       "enabled": true
     }
