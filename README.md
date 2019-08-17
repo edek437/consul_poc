@@ -3,6 +3,23 @@ Prerequisistes
 1. Linux machine
 1. Installed: jq (v1.6), cfssl, cfssljson, docker (17.09.0+), docker-compose
 
+Directory structure
+---
+```
+config  
+|- acl - ACL configuration and policies  
+|- consul - Consul agents congiration files and jq templates  
+|- env - environment variables for docker containers  
+|- ssl - SSL self-signed CA certificates and cfssl input files  
+scripts  
+|- vars.sh - common variables shared between scripts  
+|- prepare_config.sh - based on templates in config directory genarates  
+|                     target configuration files and certificates for agents  
+|- prepare_acls.sh - based on templates in config directory genarates ACL  
+                     rules and token and pr  
+docker-compose.yml - Consul multi DC containers configuration
+target_* - configuration files and certificates prepared by prepare_config.sh
+```
 Setup
 ---
 
