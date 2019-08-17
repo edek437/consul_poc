@@ -1,8 +1,10 @@
 #!/bin/false
 
 declare consul_poc_root=$PWD
-declare ca_file='templates/ca.pem'
-declare ca_key_file='templates/ca-key.pem'
+declare policies_dir="$consul_poc_root/config/acl/policies/"
+declare acl_dir="$consul_poc_root/config/acl/"
+declare ssl_dir="$consul_poc_root/config/ssl/"
+declare consul_config_dir="$consul_poc_root/config/consul/"
 
 declare primary_datacenter='dc1'
 declare retry_join_wan='[]'
