@@ -1,7 +1,7 @@
 Prerequisistes
 ---
 1. Linux machine
-1. Installed: jq (v1.6), cfssl, cfssljson, docker, docker-compose
+1. Installed: jq (v1.6), cfssl, cfssljson, docker (17.09.0+), docker-compose
 
 Setup
 ---
@@ -27,3 +27,5 @@ TODO:
 - [ ] research adding watches to KV for auditing changes
 - [ ] research Consul servers behind nginx/haproxy
 - [ ] reaserch using Consul watches/events/kv as message queue
+- [ ] reaserch predefined queries as fallback for CD failures
+- [ ] add backups and backup restoration
