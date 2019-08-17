@@ -13,6 +13,8 @@ docker-compose up -d
 # wait a moment
 ./scripts/prepare_acls.bash
 # ACL policies are enabled
+# Occassionally prepare_acls.bash will abort on when setting token  
+# returns 403. In such case please rerun script.
 ```
 
 TODO:
@@ -20,9 +22,9 @@ TODO:
 - [x] multi DC setup (3DCs, dc1 with 2 agents, dc2 and dc3 with 1 agent)
 - [x] gossip protocol encryption
 - [x] migrate from http to https (including CLI)
-- [ ] set up ACL
-- [ ] research ACLs and UI access (or consul behind auth proxy??)
-- [ ] research consul-replicate for kv state replication??
+- [x] set up ACL
+- [x] research ACLs and UI access (or consul behind auth proxy??)
+- [ ] research consul-replicate for kv state replication between DCs??
 - [ ] add basic infra checks (maybe nagios/other monitoring framework or custom ones)
 - [ ] research adding watches to KV for auditing changes
 - [ ] research Consul servers behind nginx/haproxy
