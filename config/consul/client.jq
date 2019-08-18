@@ -5,6 +5,7 @@
   "log_level": "INFO",
   "enable_syslog": false,
   "enable_debug": true,
+  "enable_local_script_checks": true,
   "node_name": $node_name,
   "server": false,
   "leave_on_terminate": false,
