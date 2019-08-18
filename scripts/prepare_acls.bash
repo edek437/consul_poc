@@ -35,7 +35,7 @@ done; unset agent
 echo "Propagating policies to nodes"
 for agent in "${primary_dc_agent_names[@]}" "${secondary_dc_agent_names[@]}" "${client_names[@]}"; do
   if docker_on "consul_${agent[0]}_1" \
-    /bin/sh -c '[ -f /consul/config/acl-tokens.json ]'; then
+    /bin/sh -c '[ -f /consul/data/acl-tokens.json ]'; then
     echo "Token already created for $agent"
     continue
   fi

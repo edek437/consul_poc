@@ -2,7 +2,7 @@ version: '3.4'
 
 x-consul-base: &consul-base
   image: consul:latest
-  command: "agent -data-dir /consul/config"
+  command: "agent -config-dir /consul/config"
 
 services:
   consul-dc1-agent-1:
