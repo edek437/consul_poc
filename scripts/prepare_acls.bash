@@ -59,6 +59,8 @@ for agent in "${primary_dc_agent_names[@]}" "${secondary_dc_agent_names[@]}" "${
       -policy-name "$agent"
   docker_on "consul_${agent}_1" \
     consul acl set-agent-token agent "$secret"
+  docker_on "consul_${agent}_1" \
+    consul acl set-agent-token default "$secret"
 done; unset agent token_desc secret
 
 echo "Applying operator ACLs"

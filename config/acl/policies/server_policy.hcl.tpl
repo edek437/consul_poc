@@ -8,7 +8,4 @@ service_prefix "" {
 node_prefix "" {
   policy = "read"
 }
-service_prefix "" {
-  policy = "read"
-}
 acl = "read"

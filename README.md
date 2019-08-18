@@ -45,7 +45,7 @@ TODO:
 - [x] set up ACL
 - [x] research ACLs and UI access (or consul behind auth proxy??)
 - [x] Fix bug where docker-dompose down before up is required to ensure cluster is working (due to invalid config key agent error)
-- [ ] add basic infra checks (maybe nagios/other monitoring framework or custom ones)
+- [x] add basic infra checks (maybe nagios/other monitoring framework or custom ones)
 - [ ] research adding watches to KV for auditing changes
 - [ ] research consul-replicate for kv state replication between DCs (or uses waches since consul-replicate seems no longer maintained)
 - [ ] reaserch using Consul watches/events/kv as message queue
