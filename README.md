@@ -32,6 +32,9 @@ docker-compose up -d
 # ACL policies are enabled
 # Occassionally prepare_acls.bash will abort on when setting token  
 # returns 403. In such case please rerun script.
+
+#And when you finish
+docker-compose down
 ```
 
 TODO:
@@ -41,10 +44,12 @@ TODO:
 - [x] migrate from http to https (including CLI)
 - [x] set up ACL
 - [x] research ACLs and UI access (or consul behind auth proxy??)
-- [ ] research consul-replicate for kv state replication between DCs??
+- [ ] research consul-replicate for kv state replication between DCs (or uses waches since consul-replicate seems no longer maintained)
 - [ ] add basic infra checks (maybe nagios/other monitoring framework or custom ones)
 - [ ] research adding watches to KV for auditing changes
 - [ ] research Consul servers behind nginx/haproxy
 - [ ] reaserch using Consul watches/events/kv as message queue
 - [ ] reaserch predefined queries as fallback for CD failures
 - [ ] add backups and backup restoration
+- [ ] Fix bug where docker-dompose down before up is required to ensure cluster is working
+- [ ] reasearch what happen if primary DC is down
