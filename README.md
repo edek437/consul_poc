@@ -45,11 +45,11 @@ TODO:
 - [x] set up ACL
 - [x] research ACLs and UI access (or consul behind auth proxy??)
 - [x] Fix bug where docker-dompose down before up is required to ensure cluster is working (due to invalid config key agent error)
-- [ ] research consul-replicate for kv state replication between DCs (or uses waches since consul-replicate seems no longer maintained)
 - [ ] add basic infra checks (maybe nagios/other monitoring framework or custom ones)
 - [ ] research adding watches to KV for auditing changes
-- [ ] research Consul servers behind nginx/haproxy
+- [ ] research consul-replicate for kv state replication between DCs (or uses waches since consul-replicate seems no longer maintained)
 - [ ] reaserch using Consul watches/events/kv as message queue
 - [ ] reaserch predefined queries as fallback for DC failures
-- [ ] add backups and backup restoration/snapshot
+- [ ] add KV backups and backup restoration (snapshot ecluded since every new run is new containers hence different server)
+- [ ] research Consul servers behind nginx/haproxy
 - [ ] reasearch what happen if primary DC is down
